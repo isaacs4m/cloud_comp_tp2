@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playlist-recommender-system-deployment
+  namespace: antoniolima
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playlist-recommender-system
+  template:
+    metadata:
+      labels:
+        app: playlist-recommender-system
+    spec:
+      containers:
+      - name: playlist-recommender-system
+        image: samon101/playlist-recommender-system:1.0
+        ports:
+        - containerPort: 52004
+        volumeMounts:
+          - mountPath: /app/data
+            name: shared-storage
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: playlist-recommender-system-persistent-volume-claim

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: playlist-recommender-system-service
+  namespace: antoniolima
+spec:
+  selector:
+    app: playlist-recommender-system
+  ports:
+    - protocol: TCP
+      port: 52004
+      targetPort: 52004

@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: playlist-recommender-system-ml-
+  namespace: antoniolima
+spec:
+  template:
+    spec:
+      containers:
+      - name: playlist-recommender-system-ml
+        image: samon101/playlist-recommender-system:ml-v3
+        volumeMounts:
+          - mountPath: /app/data
+            name: shared-storage
+      restartPolicy: Never
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: playlist-recommender-system-persistent-volume-claim
+  backoffLimit: 4
