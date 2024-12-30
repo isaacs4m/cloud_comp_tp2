@@ -4,7 +4,7 @@ metadata:
   name: playlist-recommender-system-deployment
   namespace: antoniolima
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: playlist-recommender-system
